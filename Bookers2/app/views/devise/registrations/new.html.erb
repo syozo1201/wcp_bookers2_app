@@ -1,0 +1,51 @@
+<div class="container">
+
+    <h2>Sign up</h2>
+    <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+        <span style="color:red">
+            <% if @user.errors.any? %>
+                <h3><%= @user.errors.count %> errors prohibited this user from being saved:</h3>
+                <div id="error_explanation" class="alert alert-danger">
+                    <ul>
+                        <span style="color:red">
+                            <% @user.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                            <% end %>
+                        </span>
+                    </ul>
+                </div>
+            <% end %>
+        </span>
+
+    <div class="row">
+        <div class="col-lg-2">
+
+            <label>Name</label>
+        <br>
+            <%= f.text_field :name, class: "name" %>
+        <br>
+
+            <label>Email</label>
+        <br>
+            <%= f.email_field :email, class: "email", id:"inputEmail" %>
+        <br>
+
+            <label>Password (6 characters minimum)</label>
+        <br>
+            <%= f.password_field :password, autocomplete: "off", class: "password", id:"inputPassword"  %>
+        <br>
+
+            <label>Password</label>
+        <br>
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: "password_confirm", id:"inputConfirmPassword" %>
+        <br>
+        <br>
+
+            <%= f.submit "Sign up", class: "btn btn-success" %>
+    <% end %>
+        <br>
+            <%= link_to "login", new_user_session_path, class: "sign_in" %>
+        </div>
+
+    </div>
+</div>
